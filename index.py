@@ -2,6 +2,7 @@
 from tkinter import * #IMporta todos os modulos do tkinter
 from tkinter import messagebox #importa o modulo de caixas de de mensagens do tkinter 
 from tkinter import ttk #Importa a classe Database do modulo DataBase
+from DataBase import Database #Importa a classe Database do modulo Database
 
 #CRIAR A JANELA
 jan=Tk() # Cria uma instancia da janela principal
@@ -72,12 +73,12 @@ def Registrar():
     RegisterButton.place(x=5000) #Move o botão de registro para fora da tela
 
     #INSERINDO WIDGETS DE CADASTRO
-    NomeLabel = Label(RightFrame,text="Usuario: ",font=("Century Gothic",20),bg="MIDNIGHTBLUE",fg="White") #Cria um label para o nome
+    NomeLabel = Label(RightFrame,text="Nome             : ",font=("Century Gothic",20),bg="MIDNIGHTBLUE",fg="White") #Cria um label para o nome
     NomeLabel.place(x=5,y=5) #Posiciona o label no frame direito
     NomeEntry = ttk.Entry(RightFrame,width=30) #Cria um campo de entrada para o nome
     NomeEntry.place(x=120,y=20) #Posiciona o campo de entrada
 
-    EmailLabel = Label(RightFrame,text="Usuario: ",font=("Century Gothic",20),bg="MIDNIGHTBLUE",fg="White") #Cria um label para o email
+    EmailLabel = Label(RightFrame,text="Email: ",font=("Century Gothic",20),bg="MIDNIGHTBLUE",fg="White") #Cria um label para o email
     EmailLabel.place(x=5,y=40) #Posiciona o label no frame direito
     EmailEntry = ttk.Entry(RightFrame,width=30) #Cria um campo de entrada para o email
     EmailEntry.place(x=120,y=55) #Posiciona o campo de entrada

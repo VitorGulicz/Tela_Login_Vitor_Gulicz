@@ -1,13 +1,13 @@
-import _mysql_connector #Importa o modulo mysql.connector para conectar ao banco de dados MySQL
+import mysql.connector #Importa o modulo mysql.connector para conectar ao banco de dados MySQL
 
 class Database:
     def __init__(self):
         #Conecta ao banco de dados MySQL com as credenciais forncedas
-        self.conn = _mysql_connector.connect(
+        self.conn = mysql.connector.connect(
             host="localhost",
             user="root",
             password="",
-            Database="vitorgulicz.db"
+            database="vitorgulicz_db"
         )
         self.cursor = self.conn.cursor() #Cria um cursor para executar comandos MySQL
         #Cria uma tabela 'usuario1' se ela não existir
