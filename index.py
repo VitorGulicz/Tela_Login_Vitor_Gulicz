@@ -40,7 +40,7 @@ UsuarioEntry.place(x=120,y=115) #Posiciona o campo de entrada
 SenhaLabel = Label(RightFrame,text="Senha: ",font=("Century Gothic",20),bg="MIDNIGHTBLUE",fg="White") #Cria um label para a senha
 SenhaLabel.place(x=5,y=150) #Posiciona o label no frame direito
 
-SenhaEntry = ttk.Entry(RightFrame,width=30,show="°") #Cria um campo de entrada para a senha
+SenhaEntry = ttk.Entry(RightFrame,width=30,show="*") #Cria um campo de entrada para a senha
 SenhaEntry.place(x=120,y=165) #Posiciona o campo de entrada
 
 #FUNÇÃO DE LOGIN
@@ -79,3 +79,50 @@ def Registrar():
 
     EmailLabel = Label(RightFrame,text="Usuario: ",font=("Century Gothic",20),bg="MIDNIGHTBLUE",fg="White") #Cria um label para o email
     EmailLabel.place(x=5,y=40) #Posiciona o label no frame direito
+    EmailEntry = ttk.Entry(RightFrame,width=30) #Cria um campo de entrada para o email
+    EmailEntry.place(x=120,y=55) #Posiciona o campo de entrada
+
+    #FUNÇÃO PARA REGISTRAR NO BANCO DE DADOS
+    def RegistrarNoBanco():
+        nome= NomeEntry.get() #Obtem o valor do campo de entrada do nome
+        email = EmailEntry.get() #Obtem o valor do campo de entrada do email
+        usuario= UsuarioEntry.get() #Obtem o valor do campo de entrada do usuario
+        senha = SenhaEntry.get() #Obtem o valor do campo de entrada da senha
+
+        #Verifica se todos os campos estão preenchidos
+        if nome == "" or email =="" or usuario == "" or senha == "":
+            messagebox.showerror(title="Erro de Registro", message="PREENCHA TODOS OS CAMPOS") #Exibe a mensagem de erro
+        else:
+            db = Database() #Cria uma instancia da classe Database
+            db.RegistrarNoBanco(nome,email,usuario,senha) #Chama o metodo para registrar no banco de dados 
+            messagebox.showinfo("Sucesso","Usuario registrado com sucesso!") #Exibe a mensagem de sucesso
+
+            #Limpar os nomes após o registro
+            NomeEntry.delete(0,END) #Limpa o campo de entrada do nome
+            EmailEntry.delete(0,END) #Limpa o campo de entrada do email
+            UsuarioEntry.delete(0,END) #Limpa o campo de entrada do usuario
+            SenhaEntry.delete(0,END) #Limpa o campo de entrada da senha
+
+    Register = ttk.Button(RightFrame,text="REGISTRAR",width=15,command=RegistrarNoBanco) #Cria um botão de registro
+    Register.place(x=150,y=225) #Posiciona o botão de registro
+
+#FUNÇÃO PARA VOLTAR A TELA DE LOGIN
+    def VoltarLogin():
+        #REMOVENDO WIDGETS DE CADASTRO
+        NomeLabel.place(x=5000) #Move o label do nome para fora da tela
+        NomeEntry.place(x=5000) #Move o campo entrada do nome para fora da tela
+        EmailLabel.place(x=5000) #Move o label do email para fora da tela
+        EmailEntry.place(x=5000) #Move o campo entrada do email para fora da tela
+        Register.place(x=5000) #Move o botão de registro para fora da tela
+        Voltar.place(x=5000) #Move o botão de voltar para fora da tela
+
+    #TRAZENDO DE VOLTA OS WIDGETS
+        LoginButton.place(x=150) #Traz o botão de login de volta para a tela
+        RegisterButton.place(x=150) #Traz o botão de registrar de volta para a tela
+    Voltar = ttk.Button(RightFrame,text="VOLTAR",width=15,command=VoltarLogin) #Cria um botão de voltar
+    Voltar.place(x=150,y=255) #Posiciona o botão de voltar
+RegisterButton= ttk.Button(RightFrame,text="REGISTRAR",width=15,command=Registrar) #Cria um botão de registro
+RegisterButton.place(x=150,y=255) #Posiciona o botão de registro
+
+#INICIAR O LOOP PRINCIPAL
+jan.mainloop() #Inicia o loop principal da aplicação
