@@ -78,4 +78,4 @@ def Registrar():
     NomeEntry.place(x=120,y=20) #Posiciona o campo de entrada
 
     EmailLabel = Label(RightFrame,text="Usuario: ",font=("Century Gothic",20),bg="MIDNIGHTBLUE",fg="White") #Cria um label para o email
-    EmailLabelLabel.place(x=5,y=5) #Posiciona o label no frame direito
+    EmailLabel.place(x=5,y=40) #Posiciona o label no frame direito
